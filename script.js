@@ -1,4 +1,4 @@
-let carrinho = [];
+"let carrinho = [];
 
 function salvarCarrinho(){
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
@@ -86,4 +86,4 @@ function removerProduto(index){
     salvarCarrinho(); // Salva o carrinho atualizado no localStorage
     atualizarLista(); // Atualiza a lista de produtos na tela
 }
-carregarCarrinho();
+carregarCarrinho();"
