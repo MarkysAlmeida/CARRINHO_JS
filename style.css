@@ -81,6 +81,12 @@ button {
 button:hover {
     background-color: #1b5fa7;
 }
+.btn-remover{
+    background-color: #e74c3c;
+    padding: 5px 10px;
+    font-size: 12px;
+    width: 20%;
+}
 
 /* Lista */
 .lista-section {

@@ -1,5 +1,19 @@
 let carrinho = [];
 
+function salvarCarrinho(){
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    // Salva o carrinho no localStorage, convertendo o array em string
+}
+
+function carregarCarrinho(){
+    const carrinhoSalvo = localStorage.getItem("carrinho");
+
+    if(carrinhoSalvo){
+        carrinho = JSON.parse(carrinhoSalvo);
+        atualizarLista();
+    }
+}
+
 // CRIANDO FUNÇÃO
 function adicionarProduto(){
 //Pegue os inputs
@@ -19,9 +33,9 @@ let produto = {
     desconto: temDesconto.checked,
     quantidade: parseInt(quantidadeProduto.value)
 }
-carrinho.push(produto);
-
-atualizarLista();
+carrinho.push(produto); // Adiciona o produto no carrinho
+salvarCarrinho(); // Salva o carrinho no localStorage
+atualizarLista(); // Atualiza a lista de produtos na tela
 }
 
 
@@ -48,6 +62,8 @@ function atualizarLista(){
             <span class="produto-nome">Nome: ${produto.nome}</span>
             <span class="produto-valor">Valor: R$${valorFinal.toFixed(2)}</span>
             <span class="produto-quantidade">Quantidade: ${produto.quantidade}</span>
+            <button class="btn-remover" onclick="removerProduto(${index})">Remover</button>
+            </li>
             `;
     }
 ) //finaliza as funções de cada produto
@@ -64,3 +80,10 @@ valorProduto.value = "";
 quantidadeProduto.value = "";
 temDesconto.checked = false;
 }
+
+function removerProduto(index){
+    carrinho.splice(index, 1); // Remove o produto do carrinho, usando a posição do produto (index) e removendo 1 item
+    salvarCarrinho(); // Salva o carrinho atualizado no localStorage
+    atualizarLista(); // Atualiza a lista de produtos na tela
+}
+carregarCarrinho();
